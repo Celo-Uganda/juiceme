@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { newKitFromWeb3 } from "@celo/contractkit";
@@ -5,9 +7,9 @@ import Web3 from "web3";
 import "react-toastify/dist/ReactToastify.css";
 
 import Head from "next/head";
-//import coffeePortalAbi from "../contracts/CoffeePortal.abi.json";
-//import erc20Abi from "../contracts/IERC20.abi.json";
-import { contractAddress, cUSDContractAddress,contractABI, erc20ABI} from "../utils/constants";
+import coffeePortalAbi from "../contracts/CoffeePortal.abi.json";
+import erc20Abi from "../contracts/IERC20.abi.json";
+import { contractAddress, cUSDContractAddress } from "../utils/constants";
 
 export default function Home() {
   const [currentAccount, setCurrentAccount] = useState("");
@@ -126,7 +128,7 @@ export default function Home() {
         const kit = newKitFromWeb3(web3);
 
         const coffeePortalContract = new kit.web3.eth.Contract(
-          contractABI,
+          coffeePortalAbi,
           contractAddress
         );
 
@@ -163,7 +165,7 @@ export default function Home() {
 
   async function approve(_donation, kit) {
     const cUSDContract = new kit.web3.eth.Contract(
-      erc20ABI,
+      erc20Abi,
       cUSDContractAddress
     );
     const result = await cUSDContract.methods
@@ -182,7 +184,7 @@ export default function Home() {
         const kit = newKitFromWeb3(web3);
 
         const coffeePortalContract = new kit.web3.eth.Contract(
-          contractABI,
+          coffeePortalAbi,
           contractAddress
         );
 
@@ -390,4 +392,3 @@ export default function Home() {
     </div>
   );
 }
-
